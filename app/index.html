@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" ng-app="mapApp">
+<head>
+  <meta charset="utf-8">
+  <title>Player</title>
+  <script type="text/javascript" src="http://code.angularjs.org/1.1.4/angular.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+  <script src="http://durated.github.io/angular-scroll/angular-scroll.min.js"></script>
+
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js">
+  <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.3/leaflet.fullscreen.css">
+  <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css">
+  <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v2.0.0/mapbox.css">
+
+  
+  <!--<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
+
+
+  <script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox.js/v2.0.0/mapbox.js"></script>
+  <script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.3/Leaflet.fullscreen.min.js"></script>
+  <script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js"></script>
+  <script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="css/app.css" />
+
+</head>
+<body ng-controller="data" scroll>
+
+
+<div id="pane"><div map></div></div>
+
+<article>
+
+  <section ng-repeat="marker in data.features" ng-class="{true: 'active'}[$index==active]">
+    <div ng-bind-html-unsafe="marker.properties.content">{{active}}{{$index}}{{marker.properties.content}}</div>
+  </section>
+
+<section><a href="#" ng-click="toTheTop()">Top</a></section>
+</article>
+
+
+
+  <script src="js/controllers.js"></script>
+</body>
+</html>

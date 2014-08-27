@@ -7,7 +7,7 @@ var mapApp = angular.module('mapApp', []);
 mapApp.controller('data', function($scope, $http, $window, $document, $rootScope) {
   $scope.active = 0;
 
-  $http.get('../../example.json').success(function(data) {
+  $http.get('json/example.json').success(function(data) {
     var items = [];
     var i = 0;
     for (var j= 0; j < data.features.length; ++j) {

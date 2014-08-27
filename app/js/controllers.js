@@ -43,7 +43,7 @@ mapApp.controller('data', function($scope, $http, $window, $document, $rootScope
     
  
   })
-.directive('map', [function() {
+.directive('map', [function($window) {
 
   return {
     restrict: 'A',
@@ -63,13 +63,21 @@ mapApp.controller('data', function($scope, $http, $window, $document, $rootScope
 
       scope.$watch('data', function() {
         if (scope.data != undefined) {
+          scope.markers = [];
           // a simple GeoJSON featureset with a single point
           // with no properties
+          console.log(scope.data);
           scope.featureLayer.setGeoJSON(scope.data);
-          console.log(scope.featureLayer.getBounds());
+          console.log(scope.featureLayer);
+
+          scope.map.on('resize', function() {
+            scope.paddingRight = parseInt(window.innerHeight*.5);
+          });
+          scope.paddingRight = parseInt(window.innerHeight*.5);
+
           scope.map.fitBounds(scope.featureLayer.getBounds(), {
             animate: false,
-            paddingTopLeft: [500,0]
+            paddingTopLeft: [scope.paddingRight, 0]
           });
 
           setTimeout(function(){
@@ -121,9 +129,6 @@ mapApp.controller('data', function($scope, $http, $window, $document, $rootScope
       for (var i=0; i < sections.length; i++) {
         if (scope.data != undefined && scope.data.features != undefined) {
           memo += sections[i].offsetHeight;
-          console.log(memo);
-          console.log(y);
-          console.log(buffer);
           if (y > (memo-buffer)) {
             active = i;
           }
@@ -147,7 +152,7 @@ mapApp.controller('data', function($scope, $http, $window, $document, $rootScope
         });*/
         
         var offset = scope.map._getNewTopLeftPoint([c[1], c[0]]).subtract(scope.map._getTopLeftPoint());
-        offset.x -= 500;
+        offset.x -= scope.paddingRight;
         console.log(offset);
         scope.map.panBy(offset, {
           animate: true,

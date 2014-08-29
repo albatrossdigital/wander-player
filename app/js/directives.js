@@ -57,7 +57,24 @@ mapApp.directive('map', ['$window', '$filter', function($window, $filter) {
 
           setTimeout(function(){
             scope.map.zoomIn(1);
-            scope.map.panTo(getLatLng(scope.data.markers[0]));
+
+            setTimeout(function(){
+              
+            }, 2000);
+
+            scope.map.on('zoomend', function() {
+              var c = scope.data.markers[0].geometry.coordinates;
+              var offset = scope.map._getNewTopLeftPoint([c[1], c[0]]).subtract(scope.map._getTopLeftPoint());
+              offset.x -= scope.paddingRight;
+              console.log(offset);
+              scope.map.panBy(offset, {
+                animate: true,
+                duration: 2,
+              });
+            })
+            
+
+
           }, 2000);
 
 

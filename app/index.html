@@ -17,11 +17,11 @@
   
   <!--<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
 
-
   <script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox.js/v2.0.0/mapbox.js"></script>
   <script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.3/Leaflet.fullscreen.min.js"></script>
   <script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js"></script>
   <script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js"></script>
+  <script type="text/javascript" src="assets/Leaflet.GeometryUtil/dist/leaflet.geometryutil.js"></script>
 
 
 
@@ -36,7 +36,7 @@
 
 <article>
 
-  <section ng-repeat="marker in data.features" ng-class="{true: 'active'}[$index==active]">
+  <section ng-repeat="marker in data.markers" ng-class="{true: 'active'}[$index==active]">
     <div ng-bind-html-unsafe="marker.properties.content">{{active}}{{$index}}{{marker.properties.content}}</div>
   </section>
 
@@ -45,6 +45,10 @@
 
 
 
+  <script src="js/app.js"></script>
+  <script src="js/filters.js"></script>
   <script src="js/controllers.js"></script>
+  <script src="js/directives.js"></script>
+
 </body>
 </html>
